@@ -1,0 +1,25 @@
+.navbar {
+	color: rgb(245, 129, 177);
+	text-align: right;
+	padding: 32px;
+	margin-left: 50px;
+	margin-right: 50px;
+	border-bottom: solid 3px rgb(245, 129, 177);
+	display: flex;
+	justify-content: space-between;
+	flex-direction: row;
+	align-items: center;
+}
+
+.lmj-title {
+	padding-left: 32px;
+}
+
+.lmj-logo {
+	height: 150px;
+	width: 150px;
+}
+.model{
+	display: flex;
+	flex-direction: column;
+}
