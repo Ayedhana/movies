@@ -5,6 +5,9 @@ import Navbar from './Components/Navbar';
 import MovieList from './Components/MovieList/MovieList';
 import { v4 as uuidv4 } from "uuid";
 import Footer from './Components/Footer';
+import { Routes, Route } from "react-router-dom";
+import MovieDetails from './Components/MovieDetails/MovieDetails';
+
 
 function App() {
 
@@ -13,10 +16,12 @@ function App() {
       id: uuidv4(),
       image:
         "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTLisFLGm4_P5eCRLha-Djc_C5tT7If83FkTXaBLSvXiHmM_0mG",
-      title: "ffffff",
+      title: "Aftermath",
       description:
         "est un thriller américain co-produit et réalisé par Peter Winther, sorti en 2021.",
       rating: 2,
+      trailer:
+        "https://www.allocine.fr/video/player_gen_cmedia=19593460&cfilm=275899.html",
     },
     {
       id: uuidv4(),
@@ -27,6 +32,7 @@ function App() {
       description:
         "The Pale Blue Eye is a 2022 American mystery thriller film written and directed by Scott Cooper.",
       rating: 5,
+      trailer: "https://www.youtube.com/watch?v=ddbL9jvg77w&ab_channel=Netflix",
     },
     {
       id: uuidv4(),
@@ -37,6 +43,8 @@ function App() {
       description:
         "Jaula is a film directed by Ignacio Tatay with Elena Anaya, Pablo Molinero. Synopsis: When a couple finds a child of unknown origin,",
       rating: 3,
+      trailer:
+        "https://www.youtube.com/watch?v=TMQT7GaIQZw&ab_channel=SonyPicturesEspa%C3%B1a",
     },
     {
       id: uuidv4(),
@@ -46,6 +54,7 @@ function App() {
       description:
         "Carter est un film sud-coréen réalisé par Jeong Byeong-gil, sorti en 2022.",
       rating: 4,
+      trailer: "https://www.youtube.com/watch?v=ulPHag30btQ&ab_channel=Netflix",
     },
     {
       id: uuidv4(),
@@ -56,6 +65,7 @@ function App() {
       description:
         "Rappelé du front à la suite de la mort de son plus jeune frère, décédé des suites d’une prétendue intervention de police.",
       rating: 4,
+      trailer: "https://www.youtube.com/watch?v=vRunUkdkK8s&ab_channel=Netflix",
     },
     {
       id: uuidv4(),
@@ -66,6 +76,7 @@ function App() {
       description:
         "The Call est un film réalisé par Chung-Hyun Lee avec Shin-Hye Park, Jeon Jong-seo. Synopsis ",
       rating: 3,
+      trailer: "https://www.youtube.com/watch?v=ulPHag30btQ&ab_channel=Netflix",
     },
     {
       id: uuidv4(),
@@ -76,6 +87,8 @@ function App() {
       description:
         "BAC Nord est un film français co-écrit et réalisé par Cédric Jimenez, sorti en 2020.",
       rating: 3,
+      trailer:
+        "https://www.youtube.com/watch?v=iyVLnChTs8w&ab_channel=STUDIOCANALFrance",
     },
     {
       id: uuidv4(),
@@ -86,13 +99,14 @@ function App() {
       description:
         "Derrière nos écrans de fumée (The Social Dilemma) est un documentaire drame américain .",
       rating: 4,
+      trailer:
+        "https://www.youtube.com/watch?v=WclCmybPQmA&ab_channel=lovemoviemania",
     },
   ]);
    const [inputSearch, setInputSearch] = useState("");
    const [stars, setStars] = useState(1);
 
   const [filtredMovies,setFiltredMovies]=useState(movies);
-
 
 useEffect(() => {
  setFiltredMovies(
@@ -108,14 +122,26 @@ console.log(filtredMovies)
 
   return (
     <div className="App">
-      <Navbar movies={movies} setMovies={setMovies} inputSerch={inputSearch} setInputSearch={setInputSearch} stars={stars} setStars={setStars} />
+      <Navbar
+        movies={movies}
+        setMovies={setMovies}
+        inputSerch={inputSearch}
+        setInputSearch={setInputSearch}
+        stars={stars}
+        setStars={setStars}
+      />
 
-      <MovieList movies={filtredMovies} setMovies={setMovies} />
-      <br/>
-      <br/>
-      <Footer/>
+      <br />
+
+      <Routes>
+        <Route
+          path="/"
+          element={<MovieList movies={filtredMovies} setMovies={setMovies} />}
+        />
+        <Route path="/movie/:id" element={<MovieDetails movies={movies}/>} />
+      </Routes>
+      <Footer />
     </div>
-
   );
 }
 

@@ -2,6 +2,7 @@ import React from 'react'
 import Card from "react-bootstrap/Card";
 import ListGroup from "react-bootstrap/ListGroup";
 import ReactStars from "react-stars";
+import {Link} from "react-router-dom";
 
 
 const Moviecard = ({movie}) => {
@@ -22,6 +23,9 @@ const Moviecard = ({movie}) => {
               value={movie.rating}
               edit={false}
             />
+            <Link to={`/movie/${movie.id}`}>
+              <h5>More Details</h5>
+            </Link>
           </ListGroup.Item>
         </ListGroup>
       </Card>
